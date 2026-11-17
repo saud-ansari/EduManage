@@ -43,10 +43,15 @@
 
             <div class="d-flex align-items-center gap-3 mb-4">
 
-                <div class="rounded-circle d-flex align-items-center justify-content-center"
-                    style="width:65px;height:65px;background:#F0E8F8;color:#692386;">
-
-                    <i class="bi bi-person-fill fs-2"></i>
+                <div class="rounded-circle d-flex align-items-center justify-content-center">
+                    @if ($student->profile_image)
+                        <img src="{{ asset('storage/' . $student->profile_image) }}" alt="{{ $student->name }}"
+                            width="150" height="150" class="rounded-circle mb-3" style="object-fit: cover;">
+                    @else
+                        <div class="text-muted mb-3">
+                            No profile image available.
+                        </div>
+                    @endif
 
                 </div>
 

@@ -4,9 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Student extends Model
 {
+    use HasFactory, SoftDeletes;
+
     protected $fillable = [
         'name',
         'email',
@@ -15,6 +20,8 @@ class Student extends Model
         'course',
         'course_id',
         'marks',
+    'profile_image',
+
     ];
 
     // Each student belongs to one course

@@ -41,7 +41,8 @@
 
             @endif
 
-            <form action="{{ route('students.store') }}" method="POST">
+            <form action="{{ route('students.store') }}" method="POST" enctype="multipart/form-data">
+
 
                 @csrf
 
@@ -171,6 +172,29 @@
                         @enderror
 
                     </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Student Profile Image
+                        </label>
+
+                        <input type="file" name="profile_image"
+                            class="form-control @error('profile_image') is-invalid @enderror"
+                            accept=".jpg,.jpeg,.png,.webp">
+
+                        @error('profile_image')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+
+                        <small class="text-muted">
+                            Accepted formats: JPG, PNG, WEBP. Maximum size: 2 MB.
+                        </small>
+
+                    </div>
+
 
                 </div>
 

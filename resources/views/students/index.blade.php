@@ -40,7 +40,7 @@
                         Total Students
                     </div>
                     <h3 class="fw-bold mb-0">
-                        {{ $students->count() }}
+                        {{ $totalStudents }}
                     </h3>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                         Passed Students
                     </div>
                     <h3 class="fw-bold text-success mb-0">
-                        {{ $students->where('marks', '>=', 40)->count() }}
+                        {{ $passedStudents }}
                     </h3>
                 </div>
             </div>
@@ -62,12 +62,83 @@
                         Failed Students
                     </div>
                     <h3 class="fw-bold text-danger mb-0">
-                        {{ $students->where('marks', '<', 40)->count() }}
-                    </h3>
+                        {{ $failedStudents }} </h3>
                 </div>
             </div>
 
         </div>
+
+        <div class="content-card mb-4">
+            <div class="card-body">
+
+                <form action="{{ route('students.index') }}" method="GET">
+
+                    <div class="row g-3">
+
+                        <!-- Search -->
+                        <div class="col-md-4">
+
+                            <label class="form-label">Search Student</label>
+
+                            <input type="text" name="search" class="form-control" placeholder="Name or email..."
+                                value="{{ request('search') }}">
+
+                        </div>
+
+                        <!-- Course Filter -->
+                        <div class="col-md-3">
+
+                            <label class="form-label">Select Course</label>
+
+                            <select name="course_id" class="form-select">
+
+                                <option value="">All Courses</option>
+
+                                @foreach ($courses as $course)
+                                    <option value="{{ $course->id }}"
+                                        {{ request('course_id') == $course->id ? 'selected' : '' }}>
+
+                                        {{ $course->name }}
+
+                                    </option>
+                                @endforeach
+
+                            </select>
+
+                        </div>
+
+                        <!-- Marks Filter -->
+                        <div class="col-md-2">
+
+                            <label class="form-label">Minimum Marks</label>
+
+                            <input type="number" name="min_marks" class="form-control" min="0" max="100"
+                                placeholder="e.g. 70" value="{{ request('min_marks') }}">
+
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="col-md-3 d-flex align-items-end gap-2">
+
+                            <button type="submit" class="btn btn-primary">
+                                Search
+                            </button>
+
+                            <a href="{{ route('students.index') }}" class="btn btn-outline-secondary">
+
+                                Reset
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
 
         {{-- Student Table --}}
         <div class="content-card">
@@ -86,6 +157,7 @@
                     <thead class="table-light">
                         <tr>
                             <th>Id</th>
+                            <th>Profile</th>
                             <th>Student</th>
                             <th>Email</th>
                             <th>Phone</th>
@@ -101,6 +173,19 @@
                         @forelse($students as $student)
                             <tr>
                                 <td>{{ $student->id }}</td>
+                                <td>
+
+                                    @if ($student->profile_image)
+                                        <img src="{{ asset('storage/' . $student->profile_image) }}"
+                                            alt="{{ $student->name }}" width="45" height="45" class="rounded-circle"
+                                            style="object-fit: cover;">
+                                    @else
+                                        <img src="{{ asset('images/default-avatar.png') }}" alt="Default Profile"
+                                            width="45" height="45" class="rounded-circle" style="object-fit: cover;">
+                                    @endif
+
+                                </td>
+
                                 <td class="fw-semibold">
                                     {{ $student->name }}
                                 </td>
@@ -170,6 +255,18 @@
                     </tbody>
                 </table>
             </div>
+
+            {{-- Pagination Footer --}}
+            <div>
+                {{ $students->links('pagination::bootstrap-5') }}
+            </div>
+
+        </div>
+
+        <div class="d-flex justify-content-end mt-3">
+            <a href="{{ route('students.trash') }}" class="btn btn-outline-danger">
+                Deleted Students
+            </a>
         </div>
     </div>
 @endsection

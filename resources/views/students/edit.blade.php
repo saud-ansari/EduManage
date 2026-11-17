@@ -39,7 +39,7 @@
 
             @endif
 
-            <form action="{{ route('students.update', $student) }}" method="POST">
+            <form action="{{ route('students.update', $student) }}" method="POST" enctype="multipart/form-data">
 
                 @csrf
                 @method('PUT')
@@ -169,6 +169,51 @@
                         @enderror
 
                     </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Current Profile Image
+                        </label>
+
+                        @if ($student->profile_image)
+                            <div class="mb-3">
+
+                                <img src="{{ asset('storage/' . $student->profile_image) }}" alt="{{ $student->name }}"
+                                    width="120" height="120" class="rounded-circle" style="object-fit: cover;">
+
+                            </div>
+                        @else
+                            <p class="text-muted">
+                                No profile image uploaded.
+                            </p>
+                        @endif
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Change Profile Image
+                        </label>
+
+                        <input type="file" name="profile_image"
+                            class="form-control @error('profile_image') is-invalid @enderror"
+                            accept=".jpg,.jpeg,.png,.webp">
+
+                        @error('profile_image')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+
+                        <small class="text-muted">
+                            Leave empty to keep the existing image.
+                        </small>
+
+                    </div>
+
+
 
                 </div>
 

@@ -5,30 +5,22 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
         @yield('title', 'Dashboard') | EduManage
     </title>
 
     <!-- Bootstrap CSS -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap Icons -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
     <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-
         :root {
             --primary: #25143B;
             --secondary: #692386;
@@ -104,7 +96,7 @@
         .topbar {
             background: white;
             padding: 18px 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,.04);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .04);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -123,7 +115,7 @@
             border: none;
             border-radius: 12px;
             padding: 22px;
-            box-shadow: 0 3px 15px rgba(0,0,0,.04);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, .04);
         }
 
         .stat-icon {
@@ -177,6 +169,21 @@
             font-size: 13px;
         }
 
+        .pagination .page-item.active .page-link {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            color: #fff;
+        }
+
+        .pagination .page-link {
+            color: var(--secondary);
+        }
+
+        .pagination .page-link:hover {
+            background-color: #f3e8ff;
+            border-color: var(--secondary);
+        }
+
         /* Mobile Sidebar */
 
         @media(max-width: 768px) {
@@ -200,7 +207,6 @@
             }
 
         }
-
     </style>
 
     @stack('styles')
@@ -230,10 +236,10 @@
     </div>
 
     <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     @stack('scripts')
 
 </body>
+
 </html>
