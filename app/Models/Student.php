@@ -20,7 +20,7 @@ class Student extends Model
         'course',
         'course_id',
         'marks',
-    'profile_image',
+        'profile_image',
 
     ];
 
@@ -29,4 +29,10 @@ class Student extends Model
     {
         return $this->belongsTo(Course::class, 'course_id');
     }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }
