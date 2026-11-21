@@ -1,0 +1,8 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48">
+  <rect x="2" y="4" width="40" height="40" rx="12" fill="#8046D0"></rect>
+  <path d="M12 15h20v3H12zm0 7h20v3H12zm0 7h14v3H12z" fill="white"></path>
+  <text x="52" y="32" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#8046D0">
+    EduManage
+  </text>
+</svg>
